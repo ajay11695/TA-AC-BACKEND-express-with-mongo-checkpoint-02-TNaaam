@@ -1,0 +1,38 @@
+<%- include('partials/header') -%>
+
+<body class="bg-2">
+ <header class="head-bg">
+    <div class="flex">
+        <a class="btn f-weight bg-blue" href="/">HOME</a>
+        <a class="btn f-weight bg-blue" href="/events">All Event</a>
+    </div>
+ </header>
+    
+   <div class="container-1">
+    <form action="/events" method="POST" class="form-event padding-20">
+        <h1 class="font-30 f-weight text-align margin-b-10">Add Event</h1>
+        <input class="form-input margin-b-10" type="text" name="title" placeholder="Enter title">
+        <textarea class="margin-b-10" name="summary" id="" cols="" rows="4" placeholder="write summary.."></textarea>
+        <input class="form-input margin-b-10" type="text" name="host" placeholder="Enter hostname">
+       <div class="flex margin-b-10">
+        <input class="form-date" type="date" name="start_date" placeholder="Enter">
+        <h1 class="font-20">To</h1>
+        <input class="form-date" type="date" name="end_date" placeholder="Enter">
+       </div >
+        <input class="form-input margin-b-10" type="text" name="category" placeholder="Enter category">
+        <!-- <select class="form-select margin-b-10" name="category" id="">
+            <option value="Programming">All</option>
+            <option value="Programming">Programming</option>
+            <option value="Sports">Sports</option>
+            <option value="Trekking">Trekking</option>
+        </select> -->
+        <input class="form-input margin-b-10" type="text" name="location" placeholder="Enter location">
+        <div class="text-align ">
+            <input class="btn btn-2 f-weight" type="submit" value="ADD EVENT">
+        </div>
+    </form>
+   </div>
+
+</body>
+
+<%- include('partials/footer') -%>

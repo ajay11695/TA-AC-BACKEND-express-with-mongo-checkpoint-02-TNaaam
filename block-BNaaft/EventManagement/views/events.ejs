@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>events</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body class="bg-2">
+
+  <header class="head-bg position">
+    <div class="flex">
+      <a class="btn f-weight bg-blue" href="/">HOME</a>
+      <a class="btn f-weight bg-blue" href="/events">Back</a>
+      <a class="btn f-weight bg-blue" href="/events/new">Add Event</a>
+    </div>
+  </header>
+  
+  <main class="flex f-start padding-lr-20">
+    <div class="width-70 ">
+      <h1 class="text-align f-weight font-30 margin-b-10 margin-t-10 italic">EVENT LISTS</h1>
+      <% if(events.length){ %>
+
+        <% events.forEach(event=>{ %>
+          <div class="flex event-box padding-20 margin-b-10">
+            <div class="width-85">
+              <h2 class="font-30 f-weight margin-b-9 italic">
+                <%= event.title %>
+              </h2>
+              <h3 class="font-20 f-weight margin-b-9 blue">
+                <%= event.host %>
+              </h3>
+              <h3 class=" f-weight margin-b-9">
+                Location: <%= event.location %>
+              </h3>
+              <p class=" f-weigh margin-b-9 orange ">Date: <%= event.start_date %>  <span class="blue"> To </span>
+                   <%= event.end_date %>
+              </p>
+
+              <% event.category.forEach(category=>{ %>
+                <h2 class=" margin-b-9 ">
+                    <%= category %>
+                </h2>
+                <% }) %>
+
+              <a class="btn top-2 bg-aqua" href="/events/<%= event._id %>">More Details...</a>
+            </div>
+            <div>
+              <span>
+                <%= event.likes %>
+              </span>
+              <a href="/events/<%= event._id %>/like">👍</a>
+              <aspan>
+                <%= event.dislikes %>
+              </span>
+              <a href="/events/<%= event._id %>/dislike">👎</a>
+            </div>
+          </div>
+          <% }) %>
+      
+         <% }else{ %>
+        <div class="flex flex-2">
+          <h1 class="margin-b-10">No Book Found</h1>
+          <a class="btn bg-aqua" href="/events/">Back</a>
+        </div>
+        <% } %>
+    </div>
+
+    <div class="filter_form ">
+     <!-- filters -->
+     <form action="/events/filters" method="POST" class="padding-20 ">
+      <h1 class="text-align f-weight margin-b-9 font-20 margin-t-20">Filter By Category</h1>
+      <select class="form-select margin-b-10" name="category" id="">
+          <option value="All">All</option>
+          <option value="Programming">Programming</option>
+          <option value="Sports">Sports</option>
+          <option value="Trekking">Trekking</option>
+      </select>
+      <h1 class="text-align f-weight margin-b-9 font-20 margin-t-20">Filter By Location</h1>
+      <select class="form-select margin-b-10" name="location" id="">
+          <option value="All">All</option>
+          <option value="Kanpur">Kanpur</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Rath">Rath</option>
+      </select>
+      <h1 class="text-align f-weight margin-b-9 font-20 margin-t-20">Filter By Date</h1>
+      <div class="flex margin-b-10">
+        <input class="form-date" type="date" name="start_date" placeholder="Enter" value="start_date">
+        <h1 class="font-20">To</h1>
+        <input class="form-date" type="date" name="end_date" placeholder="Enter" value="end_date">
+       </div > 
+       <div class="text-align">
+        <input class="btn btn-remark f-weight margin-t-20" type="submit" value="Filter Event">
+    </div>
+     </form>
+
+    </div>
+  </main>
+
+
+</body>
+
+</html>

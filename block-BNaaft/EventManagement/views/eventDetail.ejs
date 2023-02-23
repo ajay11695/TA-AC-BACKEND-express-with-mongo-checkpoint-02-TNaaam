@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body class="bg-2">
+
+
+    <header class="head-bg">
+        <div class="flex">
+            <a class="btn bg-blue" href="/">
+                <h1 class="f-weight">HOME</h1>
+            </a>
+            <a class="btn bg-blue f-weight" href="/events">Back</a>
+        </div>
+    </header>
+    <h1 class="font-30 f-weight text-align margin-b-10 margin-t-10 italic">Event Details</h1>
+
+    <div class="container-2 event-box padding-20">
+
+        <div>
+            <h1 class="font-30 f-weight margin-b-9 ">
+                <%= eventDetail.title %>
+            </h1>
+            <h3 class="font-20 f-weight margin-b-9 blue">
+                <%= eventDetail.host %>
+            </h3>
+
+            <% eventDetail.category.forEach(category=>{ %>
+                <span class=" margin-b-9 btn bg-blue">
+                    <%= category %>
+                </span>
+                <% }) %>
+
+                    <h3 class="f-weight margin-b-9">
+                        Location: <%= eventDetail.location %>
+                    </h3>
+                    <p class="f-weight margin-b-9 orange">
+                        Date: <%= eventDetail.start_date %> <span class="blue"> To </span>
+                            <%= eventDetail.end_date %>
+                    </p>
+                    <p class="margin-b-10">
+                        <%= eventDetail.summary %>
+                    </p>
+
+                    <!-- buttons -->
+                    <div class="margin-b-9">
+                        <span>
+                            <%= eventDetail.likes %>
+                        </span>
+                        <a href="/events/<%= eventDetail._id %>/likes">👍</a>
+                        <aspan>
+                            <%= eventDetail.dislikes %>
+                                </span>
+                                <a href="/events/<%= eventDetail._id %>/dislikes">👎</a>
+                    </div>
+
+                    <a class="btn bg-aqua" href="/events/<%= eventDetail._id %>/edit">Edit</a>
+                    <a class="btn bg-red" href="events/<%= eventDetail._id %>/delete">Delete</a>
+        </div>
+
+        <!--  remarks -->
+
+        <form action="/remarks/<%= eventDetail._id %>/addremark" method="POST" class="form-remark margin-30">
+            <input type="text" name="title" placeholder="Enter title" class="remark-input margin-b-9">
+            <input type="text" name="author" placeholder="Enter author" class="remark-input margin-b-9">
+            <div class="text-align">
+                <input class="btn btn-remark  f-weight" type="submit" value="Remarks">
+            </div>
+        </form>
+
+        <!-- <% if(eventDetail.remarks !='') { %> -->
+        <div class=" wrap " >
+            <% eventDetail.remarks.forEach((remark,i)=>{ %>
+                <div class="margin-t-10" style="width:45%">
+                    <h3 class="f-weight blue">
+                        Author:-<%= remark.author %>
+                    </h3>
+                    <span class="margin-r orange">
+                        title:-<%= remark.title %>
+                    </span>
+
+                    <span>
+                        <%= remark.likes %>
+                    </span>
+                    <a href="/remarks/<%= remark._id %>/likes">👍</a>
+                    <aspan>
+                        <%= remark.dislikes %>
+                            </span>
+                            <a href="/remarks/<%= remark._id %>/dislikes">👎</a>
+
+                            <a class="btn bg-aqua" href="/remarks/<%= remark._id %>/edit">Edit</a>
+                            <a class="bg-red btn" href="/remarks/<%= remark._id %>/delete">Delete</a>
+
+
+                </div>
+                <% }) %>
+        </div>
+        <!-- <% } %> -->
+
+    </div>
+
+
+
+</body>
+
+
+
+</html>
